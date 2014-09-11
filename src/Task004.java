@@ -7,7 +7,7 @@ public class Task004 {
 	public static void main(String[] args) {
 		double x = 10.0;
 		double y = 10.0;
-		double a = 1.0 + x;
+		double a = 1.0 + y;
 		double b = x * x;
 		b -= 4;
 		b = 1.0 / b;
