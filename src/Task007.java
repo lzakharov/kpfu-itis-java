@@ -8,13 +8,21 @@ public class Task007 {
         int a = 5;
         int b = 10;
 		
-		System.out.println("a + b = " + (a + b));
-		System.out.println("a - b = " + (a - b));
-		System.out.println("b - a = " + (b - a));
-		System.out.println("a * b = " + (a * b));
-		System.out.println("a / b = " + (a / b));
-		System.out.println("a % b = " + (a % b));
-		System.out.println("b / a = " + (b / a));
-		System.out.println("b % a = " + (b % a));
+		//System.out.println("a + b = " + (a + b));
+		System.out.println(a + " + " + b + " = " + (a + b));
+		//System.out.println("a - b = " + (a - b));
+        System.out.println(a + " - " + b + " = " + (a - b));
+		//System.out.println("b - a = " + (b - a));
+        System.out.println(b + " - " + a + " = " + (b - a));
+		//System.out.println("a * b = " + (a * b));
+        System.out.println(a + " * " + b + " = " + (a * b));
+		//System.out.println("a / b = " + (a / b));
+        System.out.println(a + " / " + b + " = " + (a / b));
+		//System.out.println("a % b = " + (a % b));
+        System.out.println(a + " % " + b + " = " + (a % b));
+		//System.out.println("b / a = " + (b / a));
+        System.out.println(b + " / " + a + " = " + (b / a));
+		//System.out.println("b % a = " + (b % a));
+        System.out.println(b + " % " + a + " = " + (b % a));
 	}	
 }
