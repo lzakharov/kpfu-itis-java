@@ -31,14 +31,14 @@ public class Triforce{
                 }
             } else if (i < n - 1) {
                 for (int j = 0; j < 2 * i - 1; j++) {
-                    System.out.print(" ");
+                    System.out.print("*");
                 }
                 if (i != 0) {
                     System.out.print("*");
                 }
             } else {
                 for (int j = 0; j < 2 * (i - n) - 1; j++) {
-                    System.out.print(" ");
+                    System.out.print("*");
                 }
                 if (i != n) {
                     System.out.print("*");
@@ -48,7 +48,7 @@ public class Triforce{
                 }
                 System.out.print("*");
                 for (int j = 0; j < 2 * (i - n) - 1; j++) {
-                    System.out.print(" ");
+                    System.out.print("*");
                 }
                 if (i != n) {
                     System.out.print("*");
