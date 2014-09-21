@@ -16,7 +16,6 @@ public class Task018 {
         for (int i = 0; i < n; i++) {
             a = in.nextInt();
             res = (res + a) * x;
-            System.out.println(res);
         }
 
         a = in.nextInt();

@@ -15,7 +15,6 @@ public class Task015 {
 
         for (int i = n; i > 1; i--) {
             s = x / (i + s);
-            System.out.println(s);
         }
 
         System.out.println(s + 1);

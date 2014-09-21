@@ -17,6 +17,6 @@ public class Task014 {
             res = Math.cos(res) + x;
         }
 
-        System.out.println(res);
+        System.out.println(res - x);
     }
 }
