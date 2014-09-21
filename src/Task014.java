@@ -11,12 +11,12 @@ public class Task014 {
         Scanner in = new Scanner(System.in);
         int n = in.nextInt();
         double x = in.nextDouble();
-        double res = x;
+        double res = 0;
 
         for (int i = 0; i < n; i++) {
-            res = Math.cos(res) + x;
+            res = Math.cos(res + x);
         }
 
-        System.out.println(res - x);
+        System.out.println(res);
     }
 }

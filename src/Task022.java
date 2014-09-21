@@ -4,9 +4,6 @@
  * Created on 19.09.2014.
  */
 
-import com.sun.security.auth.SolarisNumericUserPrincipal;
-import sun.java2d.SurfaceDataProxy;
-
 import java.util.*;
 
 public class Task022 {
