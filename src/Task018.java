@@ -9,7 +9,7 @@ import java.util.*;
 public class Task018 {
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
-        double x = in.nextInt();
+        double x = in.nextDouble();
         int n = in.nextInt();
         double res = 0, a;
 
