@@ -10,10 +10,11 @@ public class Task012 {
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
         int n = in.nextInt();
-        double s = 0;
+        double s = 0, k = 1;
 
         for (int i = 1; i < 2 * n; i += 2) {
-            s += ((i + 1) % 4 == 0) ? (-1.0 / (i * i)) : (1.0 / (i * i));
+			s += k / i;
+			k *= -1;
         }
 
         System.out.println(s);
