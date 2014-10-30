@@ -37,13 +37,12 @@ public class Task038 {
 
             if (!zero) {
                 for (int j = i + 1; j < n; j++) {
-        		    double k = a[j][i] / a[i][i];
-        		    for (int t = 0; t < n; t++) {
-        			    a[j][t] -= k * a[i][t];
-        		    }
-        	    }
+                    double k = a[j][i] / a[i][i];
+                    for (int t = 0; t < n; t++) {
+                        a[j][t] -= k * a[i][t];
+                    }
+                }
             }
-
         }
 
         for (int i = 0; i < n; i++) {
