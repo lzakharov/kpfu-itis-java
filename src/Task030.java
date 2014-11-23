@@ -12,7 +12,7 @@ public class Task030 {
         int n = in.nextInt();
         int cnt = 0;
 
-        for (int i = 0; i < n; i++) {
+        for (int i = 0; cnt < 3 && i < n; i++) {
             int x = in.nextInt();
             int k = x, length = 0, num = x % 10;
             boolean numParity = true;

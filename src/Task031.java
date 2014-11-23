@@ -13,7 +13,7 @@ public class Task031 {
         int[] a = new int[n];
         boolean flag = true;
 
-        for (int i = 0; i < n; i++) {
+        for (int i = 0; flag && i < n; i++) {
             int x = in.nextInt();
             a[i] = x;
             if (((i + 1) % 3 == 0)&&(a[i] % 3 != 0)) {
