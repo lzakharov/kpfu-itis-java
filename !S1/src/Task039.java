@@ -46,7 +46,7 @@ public class Task039 {
 			                    k /= 10;
 			                    x += DIRECTIONS[d][0];
 			                    y += DIRECTIONS[d][1];
-			                }
+			                }           v 
 
 			                if (k == 0) {
 			                    flag = true;
