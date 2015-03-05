@@ -98,31 +98,38 @@ public class Polinom {
 
     }
 
-    public Polinom derivate() {
+    public void derivate() {
         Polinom derivative = new Polinom();
         Monomial p = this.head;
 
         while (p != null) {
-            if (p.getPower() > 0) {
-                derivative.insert(p.getFactor() * p.getPower(), p.getPower() - 1);
+            p.setFactor(p.getFactor() * p.getPower());
+            p.setPower(p.getPower() - 1);
+            if (p.getNext() != null && p.getNext().getPower() == 0) {
+                p.setNext(null);
             }
-
             p = p.getNext();
         }
 
-        return derivative;
     }
 
     public int value(int x) {
         Monomial p = this.head;
         int res = 0;
+        int i = p.getPower();
 
-        while (p != null) {
-            res = (res + p.getFactor()) * x;
-            p = p.getNext();
+        while (i > 0) {
+            if (p.getPower() == i) {
+                res = (res + p.getFactor()) * x;
+                i--;
+                p = p.getNext();
+            } else {
+                res *= x;
+                i--;
+            }
         }
 
-        return res;
+        return res + p.getFactor();
     }
 
     public void deleteOdd() {
@@ -146,15 +153,5 @@ public class Polinom {
     }
 
     public void combine() {
-        Monomial p = this.head;
-        Polinom res = new Polinom();
-
-        while (p != null) {
-            res.insert(p.getFactor(), p.getPower());
-            p = p.getNext();
-        }
-
-        this.head = res.getHead();
-
     }
 }
