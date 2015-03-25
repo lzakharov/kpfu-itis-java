@@ -144,12 +144,35 @@ public class Polinom {
     }
 
     public void sum(Polinom p) {
-        Monomial x = p.getHead();
+        Monomial x = this.getHead();
+        Monomial y = p.getHead();
+        Polinom res = new Polinom();
+
+        while (x != null && y != null) {
+            if (x.getPower() > y.getPower()) {
+                res.insert(x.getFactor(), x.getPower());
+                x = x.getNext();
+            } else if (x.getPower() == y.getPower()) {
+                res.insert(x.getFactor() + y.getFactor(), x.getPower());
+                x = x.getNext();
+                y = y.getNext();
+            } else {
+                res.insert(y.getFactor(), y.getPower());
+                y = y.getNext();
+            }
+        }
 
         while (x != null) {
-            this.insert(x.getFactor(), x.getPower());
+            res.insert(x.getFactor(), x.getPower());
             x = x.getNext();
         }
+
+        while (y != null) {
+            res.insert(y.getFactor(), y.getPower());
+            y.getNext();
+        }
+
+        this.head = res.head;
     }
 
     public void combine() {
