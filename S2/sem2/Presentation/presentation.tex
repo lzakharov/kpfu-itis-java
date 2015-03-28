@@ -1,0 +1,113 @@
+\documentclass{beamer}
+
+%%% Проверка используемого TeX-движка %%%
+\usepackage{ifxetex}
+
+%%% Кодирование и шрифты %%%
+\ifxetex
+\usepackage{polyglossia}                         % Поддержка многоязычности
+\usepackage{fontspec}                            % TrueType-шрифты
+\else
+\usepackage{cmap}                                % Улучшенный поиск русских слов в полученном pdf-файле
+\usepackage[T2A]{fontenc}                        % Поддержка русских букв
+\usepackage[utf8]{inputenc}                      % Кодировка utf8
+\usepackage[english, russian]{babel}             % Языки: русский, английский
+\fi
+\usepackage{listings}
+
+%%% Математические пакеты %%%
+\usepackage{amsthm,amsfonts,amsmath,amssymb,amscd} % Математические дополнения от AMS
+
+%%% Оформление абзацев %%%
+\usepackage{indentfirst}                           % Красная строка
+
+%%% Оформление кода %%%
+\lstset{
+    language=Java,
+    basicstyle=\tiny\sffamily,
+    numbers=left,
+    numberstyle=\tiny,
+    tabsize=4,
+    columns=fixed,
+    showstringspaces=false,
+    showtabs=false,
+    keepspaces,
+    commentstyle=\color{red},
+    keywordstyle=\color{blue}
+}
+
+% Стиль презентации
+\usetheme{Warsaw}
+
+\newcommand{\br}{\pause \linebreak \linebreak}
+\newcommand{\nl}{\pause \linebreak}
+
+\begin{document}
+\title{Сортировка расчёской}
+\author{Лев Захаров}
+\institute{Высшая школа ИТИС КФУ}
+\date{Казань, 2015}
+% Создание заглавной страницы
+\frame{\titlepage}
+% Автоматическая генерация содержания
+\frame{\frametitle{Содержание}\tableofcontents}
+
+\section{Вступление}
+\begin{frame}
+    \frametitle{Вступление}
+        Сортировка пузырьком, пожалуй, самая простая и известная сортировка. Алгоритм является простым для понимания и легко реализуемым.
+        Однако данная сортировка эффективна лишь для небольших массивов. Тем не менее, существуют модификации, позволяющие ускорить работу алгоритма.
+        Одной из таких модификаций является \alert{сортировка расческой} или \alert{comb sort}.
+\end{frame}
+
+\section{Алгоритм}
+\begin{frame}
+    \frametitle{Во всем виноваты черепашки}
+        В 1980 году Влодзимеж Добосиевич пояснил почему пузырьковая и производные от неё сортировки работают так медленно. \textit{Это всё из-за черепашек.}
+        \br
+        \alert{Черепаха} $-$ элемент с относительно маленьким значением, находящийся в конце списка.
+        \nl
+        \alert{Кролик} $-$ элемент с относительно большим значением, находящийся в начале списка.
+        \br
+        В процессе сортировки черепашки сдвигаются только на одну позицию за один проход. С другой стороны \textit{кролики} двигаются достаточно быстро.
+
+\end{frame}
+
+\begin{frame}
+    \frametitle{Сортировка расческой}
+    Основная идея сортировки расческой заключается в том, чтобы первоначально выбирать расстояние между сравниваимыми элементами больше еденицы.
+    \br
+    Для первого прохода шаг равен частному от деления размера массива на \alert{фактор уменьшения}.
+    \nl
+    На каждом последующем шаге будем делить расстояние между сравниваемыми элементами на \alert{фактор уменьшения}.
+    \br
+    Так продолжается до тех пор, пока разность индексов сравниваемых элементов не достигнет единицы.
+    Дальше массив досортировывается пузырьком.
+\end{frame}
+
+\begin{frame}
+    \frametitle{Фактор уменьшения}
+    Опытным и теоретическим путем было установлено оптимально значение \alert{фактора уменьшения}:
+    \begin{center}
+        \Large $\frac{1}{1 - \frac1{e^{\varphi}}} \thickapprox 1.247330950103979$
+    \end{center}
+    , где $\varphi$ есть золотое сечение, т.е. $\varphi = \frac{1 + \sqrt{5}}2$.
+\end{frame}
+
+\section{Реализация}
+\begin{frame}
+    \frametitle{Реализация}
+    \lstinputlisting{CombSort.java}
+\end{frame}
+
+\section{Оценка сложности}
+\begin{frame}
+    \frametitle{Оценка сложности}
+\end{frame}
+
+\section{Вывод}
+\begin{frame}
+    \frametitle{Вывод}
+\end{frame}
+
+\end{document}
