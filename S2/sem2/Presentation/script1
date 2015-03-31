@@ -1,0 +1,7 @@
+#! /usr/bin/gnuplot -persist
+set terminal postscript eps enhanced
+set datafile separator ";"
+set output "g1.eps"
+set xlabel "N"
+set ylabel "Time (ns)"
+plot "output.csv" using 1:2 with lines lw 2 title ""
