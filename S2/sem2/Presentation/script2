@@ -1,7 +1,0 @@
-#! /usr/bin/gnuplot -persist
-set terminal postscript eps enhanced
-set datafile separator ";"
-set output "g2.eps"
-set xlabel "N"
-set ylabel "Iterations"
-plot "output.csv" using 1:3 with lines lw 2 title ""
