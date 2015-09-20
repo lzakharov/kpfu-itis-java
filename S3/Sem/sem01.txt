@@ -1,0 +1,6 @@
+Почтовый адрес:
+(?<country>\\p{Letter}+), (?<city>\\p{Uppercase_Letter}\\p{Lowercase_Letter}+), (?<index>\\d{6}), (?<street>(\\p{Uppercase_Letter}\\p{Lowercase_Letter}+)+) (?<number>\\d+/\\d+)
+Проверка на расширение загружаемого документа/книги:
+(?<filename>(\\p{Letter}|\\d)+)\\.(?<extension>(txt|doc(x?)|pdf|djvu|tex|html|fb2|epub))
+Валидация пароля(минимум 6 символов, как минимум один прописной, один заглавный символ, одно число):
+((?=.*[a-z])(?=.*[A-Z])(?=.*\\d).{6,})

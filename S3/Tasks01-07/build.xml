@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project name="Tasks01-07" basedir="." default="compile">
+	<property name="src.dir" value="src" />
+	<property name="build.dir" value="bin" />
+	<property name="java.release" value="1.8" />
+  <property name="encoding" value="UTF-8" />
+
+	<target name="compile" description="Compile all source files">
+		<mkdir dir="${build.dir}" />
+
+		<javac srcdir="${src.dir}" destdir="${build.dir}"
+					 source="${java.release}" target="${java.release}"
+					 encoding="${encoding}" debug="true" includeantruntime="true" />
+	</target>
+
+	<target name="clean">
+		<delete dir="${build.dir}" />
+	</target>
+
+	<target name="rebuild" depends="clean, compile" />
+
+	<target name="runTask02c">
+		<java classname="Task02c" fork="true" classpath="${build.dir}" />
+	</target>
+
+	<target name="runTask03c">
+		<java classname="Task03c" fork="true" classpath="${build.dir}" />
+	</target>
+
+	<target name="runTask03b">
+		<java classname="Task03b" fork="true" classpath="${build.dir}" />
+	</target>
+
+	<target name="runTask04b">
+		<java classname="Task04b" fork="true" classpath="${build.dir}" />
+	</target>
+
+	<target name="runTask05b">
+		<java classname="Task05b" fork="true" classpath="${build.dir}" />
+	</target>
+
+	<target name="runTask06c">
+		<java classname="Task06c" fork="true" classpath="${build.dir}" />
+	</target>
+
+	<target name="runTask07c">
+		<java classname="Task07c" fork="true" classpath="${build.dir}" />
+	</target>
+
+	<target name="runTask07b">
+		<java classname="Task07b" fork="true" classpath="${build.dir}" />
+	</target>
+</project>
