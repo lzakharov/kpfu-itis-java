@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+         version="3.1">
+    <servlet>
+        <servlet-name>showBook</servlet-name>
+        <servlet-class>ShowBookServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>showBook</servlet-name>
+        <url-pattern>/book/show</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>showArticle</servlet-name>
+        <servlet-class>ShowArticleServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>showArticle</servlet-name>
+        <url-pattern>/article/show</url-pattern>
+    </servlet-mapping>
+</web-app>
