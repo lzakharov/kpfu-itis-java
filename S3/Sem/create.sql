@@ -1,0 +1,100 @@
+CREATE TABLE `USER` (
+  `user_id` INTEGER NOT NULL AUTO_INCREMENT,
+  `username` VARCHAR(20) NOT NULL,
+  `password` VARCHAR(20) NOT NULL,
+  `email` VARCHAR(100) NOT NULL,
+  `birthdate` DATE NOT NULL,
+  `address` VARCHAR(100) NOT NULL,
+  `educational_status` INT(6) NOT NULL,
+  PRIMARY KEY (`user_id`)
+);
+
+CREATE TABLE `MESSAGE` (
+  `message_id` INTEGER NOT NULL AUTO_INCREMENT,
+  `sender_id` INTEGER NOT NULL,
+  `receiver_id` INTEGER NOT NULL,
+  `subject` VARCHAR(100),
+  `text` TEXT NOT NULL,
+  `date` DATETIME NOT NULL,
+  PRIMARY KEY (`message_id`)
+);
+
+CREATE TABLE `COMMENT` (
+  `comment_id` INTEGER NOT NULL AUTO_INCREMENT,
+  `news_id` INTEGER NOT NULL,
+  `user_id` INTEGER NOT NULL,
+  `text` TEXT NOT NULL,
+  `date` DATETIME NOT NULL,
+  PRIMARY KEY (`comment_id`)
+);
+
+CREATE TABLE `NEWS` (
+  `news_id` INTEGER NOT NULL AUTO_INCREMENT,
+  `title` VARCHAR(100) NOT NULL,
+  `text` TEXT NOT NULL,
+  `date` DATETIME NOT NULL,
+  PRIMARY KEY (`news_id`)
+);
+
+CREATE TABLE `BOOK` (
+  `book_id` INTEGER NOT NULL AUTO_INCREMENT,
+  `title` VARCHAR(100) NOT NULL,
+  `ISBN` DOUBLE,
+  `rate` INT,
+  PRIMARY KEY (`book_id`)
+);
+		
+CREATE TABLE `REVIEW` (
+  `review_id` INTEGER NOT NULL AUTO_INCREMENT,
+  `book_id` INTEGER NOT NULL,
+  `user_id` INTEGER NOT NULL,
+  `type` INT(2),
+  `text` TEXT NOT NULL,
+  PRIMARY KEY (`review_id`)
+);
+		
+CREATE TABLE `NOTE` (
+  `note_id` INTEGER NOT NULL AUTO_INCREMENT,
+  `Title` VARCHAR(100),
+  `text` TEXT,
+  `user_id` INTEGER NOT NULL,
+  `book_id` INTEGER NOT NULL,
+  PRIMARY KEY (`note_id`)
+);
+
+CREATE TABLE `AUTHOR` (
+  `author_id` INTEGER NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(100) NOT NULL,
+  `birthday` DATE,
+  `rate` INTEGER,
+  PRIMARY KEY (`author_id`)
+);
+
+		
+CREATE TABLE `BOOK_AUTHOR` (
+  `id` INTEGER NOT NULL AUTO_INCREMENT,
+  `book_id` INTEGER NOT NULL,
+  `author_id` INTEGER NOT NULL,
+  PRIMARY KEY (`id`)
+);
+
+CREATE TABLE `BOOK_DATA` (
+  `id` INTEGER NOT NULL AUTO_INCREMENT,
+  `book_id` INTEGER NOT NULL,
+  `description` TEXT,
+  `text` BLOB,
+  `cover` BLOB,
+  PRIMARY KEY (`id`)
+);
+
+ALTER TABLE `MESSAGE` ADD FOREIGN KEY (sender_id) REFERENCES `USER` (`user_id`);
+ALTER TABLE `MESSAGE` ADD FOREIGN KEY (receiver_id) REFERENCES `USER` (`user_id`);
+ALTER TABLE `COMMENT` ADD FOREIGN KEY (news_id) REFERENCES `NEWS` (`news_id`);
+ALTER TABLE `COMMENT` ADD FOREIGN KEY (user_id) REFERENCES `USER` (`user_id`);
+ALTER TABLE `REVIEW` ADD FOREIGN KEY (book_id) REFERENCES `BOOK` (`book_id`);
+ALTER TABLE `REVIEW` ADD FOREIGN KEY (user_id) REFERENCES `USER` (`user_id`);
+ALTER TABLE `NOTE` ADD FOREIGN KEY (user_id) REFERENCES `USER` (`user_id`);
+ALTER TABLE `NOTE` ADD FOREIGN KEY (book_id) REFERENCES `BOOK` (`book_id`);
+ALTER TABLE `BOOK_AUTHOR` ADD FOREIGN KEY (book_id) REFERENCES `BOOK` (`book_id`);
+ALTER TABLE `BOOK_AUTHOR` ADD FOREIGN KEY (author_id) REFERENCES `AUTHOR` (`author_id`);
+ALTER TABLE `BOOK_DATA` ADD FOREIGN KEY (book_id) REFERENCES `BOOK` (`book_id`);
