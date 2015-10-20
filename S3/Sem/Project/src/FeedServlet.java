@@ -13,24 +13,29 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
- * Created by levzaharov on 13.10.15.
+ * Created by lzakharov on 20.10.15.
  */
-@WebServlet(name = "ShowArticleServlet")
-public class ShowArticleServlet extends HttpServlet {
+@WebServlet(name = "FeedServlet")
+public class FeedServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        response.setContentType("text/html; charset=UTF-8");
+        response.setCharacterEncoding("UTF-8");
+        response.setContentType("text/html");
         Configuration config = ConfigSingleton.getConfig(getServletContext());
         Repository repository = new Repository();
-        Template template = config.getTemplate("article_show.ftl");
+        Template template = config.getTemplate("feed.ftl");
+
         HashMap<String, Object> root = new HashMap<>();
         root.put("current_user", request.getSession().getAttribute("current_user"));
-        root.put("article", ArticleRepository.getArticleById(Integer.parseInt(request.getParameter("id"))));
-        root.put("article_data", ArticleDataRepository.getArticleDataById(Integer.parseInt(request.getParameter("id"))));
+        LinkedList<Article> articles = ArticleRepository.getArticles();
+        root.put("articles", articles);
+        LinkedList<Comment> comments = CommentRepository.getComments();
+        root.put("comments", comments);
 
         try {
             template.process(root, response.getWriter());
         } catch (TemplateException e) {
             e.printStackTrace();
         }
+
     }
 }
