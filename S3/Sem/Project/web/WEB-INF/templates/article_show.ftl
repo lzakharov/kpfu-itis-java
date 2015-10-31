@@ -7,20 +7,26 @@
     <link rel="stylesheet" href="/css/bootstrap.min.css" />
 </head>
 <body>
-<script src="/js/jquery.js"></script>
-<script src="/js/bootstrap.min.js"></script>
+    <script src="/js/jquery.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
 
     <#if current_user??>
-        <#import "user_nav.ftl" as user_nav>
+        <#include "user_nav.ftl">
     <#else>
-        <#import "anon_nav.ftl" as anon_nav>
+        <#include "anon_nav.ftl">
     </#if>
 
     <div class="container">
         <div class="article">
-            <div class="article-title">${article.title}</div>
-            <p class="article-meta">Written by ${article.author} on ${article.date}</p>
-            <div class="article-image">${article_data.image}</div>
+            <div class="article-title"><h2>${article.title}</h2></div>
+            <p class="article-meta">Written by ${article.getAuthorName()} on ${article.timestamp}</p>
+            <div class="article-image">
+                <#if article_data.image??>
+                    ${article_data.image}
+                <#else>
+                    IMAGE
+                </#if>
+            </div>
             <p class="article-text">
                 ${article_data.text}
             </p>
@@ -30,7 +36,7 @@
     <div class="container">
     <#if current_user??>
         <div class="well">
-            <h4>Leave a Comment</h4>
+            <h4>Leave a ru.kpfu.itis.lzakharov.models.Comment</h4>
             <div class="form-group">
                 <textarea class="form-control"></textarea>
             </div>
@@ -38,7 +44,7 @@
         </div>
     </#if>
 
-        <hr>
+    <hr>
 
     <#list comments as comment>
         <div class="media">
@@ -46,8 +52,8 @@
                 <img class="media-object" src="http://placehold.it/64x64" alt="">
             </a>
             <div class="media-body">
-                <h4 class="media-heading"> ${comment.author}
-                    <small>${comment.time}</small>
+                <h4 class="media-heading"> ${comment.getAuthorName()}
+                    <small>${comment.timestamp}</small>
                 </h4>
                 <p>${comment.text}</p>
                 <p class="pull-right">

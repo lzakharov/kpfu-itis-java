@@ -1,6 +1,10 @@
+package ru.kpfu.itis.lzakharov.servlets;
+
 import freemarker.template.Configuration;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
+import ru.kpfu.itis.lzakharov.ConfigSingleton;
+import ru.kpfu.itis.lzakharov.respository.BookRepository;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -13,23 +17,21 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
- * Created by lzakharov on 20.10.15.
+ * Created by levzaharov on 12.10.15.
  */
-@WebServlet(name = "FeedServlet")
-public class FeedServlet extends HttpServlet {
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        response.setCharacterEncoding("UTF-8");
-        response.setContentType("text/html");
-        Configuration config = ConfigSingleton.getConfig(getServletContext());
-        Repository repository = new Repository();
-        Template template = config.getTemplate("feed.ftl");
+@WebServlet(name = "ru.kpfu.itis.lzakharov.servlets.ShowBookServlet")
+public class ShowBookServlet extends HttpServlet {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+    }
+
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        response.setContentType("text/html; charset=UTF-8");
+        Configuration config = ConfigSingleton.getConfig(getServletContext());
+        Template template = config.getTemplate("book_show.ftl");
         HashMap<String, Object> root = new HashMap<>();
         root.put("current_user", request.getSession().getAttribute("current_user"));
-        LinkedList<Article> articles = ArticleRepository.getArticles();
-        root.put("articles", articles);
-        LinkedList<Comment> comments = CommentRepository.getComments();
-        root.put("comments", comments);
+        root.put("book", BookRepository.getBookById(Integer.parseInt(request.getParameter("id"))));
 
         try {
             template.process(root, response.getWriter());

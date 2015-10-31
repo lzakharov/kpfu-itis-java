@@ -1,3 +1,5 @@
+package ru.kpfu.itis.lzakharov.models;
+
 import java.sql.Date;
 
 /**

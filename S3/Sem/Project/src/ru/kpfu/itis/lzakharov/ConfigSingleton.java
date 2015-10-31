@@ -1,3 +1,5 @@
+package ru.kpfu.itis.lzakharov;
+
 import freemarker.template.Configuration;
 import freemarker.template.TemplateExceptionHandler;
 

@@ -1,6 +1,9 @@
+package ru.kpfu.itis.lzakharov.servlets;
+
 import freemarker.template.Configuration;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
+import ru.kpfu.itis.lzakharov.ConfigSingleton;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -13,7 +16,7 @@ import java.util.HashMap;
 /**
  * Created by levzaharov on 09.10.15.
  */
-@WebServlet(name = "ProfileServlet")
+@WebServlet(name = "ru.kpfu.itis.lzakharov.servlets.ProfileServlet")
 public class ProfileServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {

@@ -1,3 +1,5 @@
+package ru.kpfu.itis.lzakharov.servlets;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.Cookie;
@@ -9,7 +11,7 @@ import java.io.IOException;
 /**
  * Created by levzaharov on 09.10.15.
  */
-@WebServlet(name = "LogoutServlet")
+@WebServlet(name = "ru.kpfu.itis.lzakharov.servlets.LogoutServlet")
 public class LogoutServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Cookie[] cookies = request.getCookies();

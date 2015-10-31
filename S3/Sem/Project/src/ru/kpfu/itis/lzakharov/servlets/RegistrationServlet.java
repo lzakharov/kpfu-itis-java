@@ -1,6 +1,12 @@
+package ru.kpfu.itis.lzakharov.servlets;
+
 import freemarker.template.Configuration;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
+import ru.kpfu.itis.lzakharov.ConfigSingleton;
+import ru.kpfu.itis.lzakharov.models.User;
+import ru.kpfu.itis.lzakharov.respository.Repository;
+import ru.kpfu.itis.lzakharov.respository.UserRepository;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,14 +17,11 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.Date;
 import java.util.HashMap;
-import java.util.SplittableRandom;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 /**
  * Created by lzakharov on 19.10.15.
  */
-@WebServlet(name = "RegistrationServlet")
+@WebServlet(name = "ru.kpfu.itis.lzakharov.servlets.RegistrationServlet")
 public class RegistrationServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Repository repository = new Repository();
@@ -32,7 +35,7 @@ public class RegistrationServlet extends HttpServlet {
         } else if (passwordValidation(response, request.getParameter("password"))) {
             response.sendRedirect("/registration?error_msg=password%20format");
         } else {
-            UsersRepository.addUser(new User(request.getParameter("username"), request.getParameter("first_name"),
+            UserRepository.addUser(new User(request.getParameter("username"), request.getParameter("first_name"),
                     request.getParameter("last_name"), request.getParameter("password"), request.getParameter("email"),
                     Date.valueOf(request.getParameter("birthdate")), request.getParameter("address")));
 
@@ -53,11 +56,11 @@ public class RegistrationServlet extends HttpServlet {
     }
 
     private boolean isEmailUsed(HttpServletResponse response, String email) throws IOException {
-        return UsersRepository.getUserByEmail(email) != null;
+        return UserRepository.getUserByEmail(email) != null;
     }
 
     private boolean isUsernameUsed(HttpServletResponse response, String username) throws IOException {
-        return UsersRepository.getUserByUsername(username) != null;
+        return UserRepository.getUserByUsername(username) != null;
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

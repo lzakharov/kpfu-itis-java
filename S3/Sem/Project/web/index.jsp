@@ -1,6 +1,6 @@
 <%--
   Created by IntelliJ IDEA.
-  User: lzakharov
+  ru.kpfu.itis.lzakharov.models.User: lzakharov
   Date: 18.10.15
   Time: 23:37
   To change this template use File | Settings | File Templates.

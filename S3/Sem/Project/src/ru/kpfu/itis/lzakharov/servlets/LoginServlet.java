@@ -1,6 +1,12 @@
+package ru.kpfu.itis.lzakharov.servlets;
+
 import freemarker.template.Configuration;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
+import ru.kpfu.itis.lzakharov.ConfigSingleton;
+import ru.kpfu.itis.lzakharov.models.User;
+import ru.kpfu.itis.lzakharov.respository.Repository;
+import ru.kpfu.itis.lzakharov.respository.UserRepository;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.*;
@@ -24,7 +30,7 @@ public class LoginServlet extends HttpServlet {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
         Repository repository = new Repository();
-        User user = UsersRepository.getUserByUsername(username);
+        User user = UserRepository.getUserByUsername(username);
 
         if (user == null) {
             response.sendRedirect("/login?error_msg=Wrong%20username&username=" + username);
@@ -61,6 +67,9 @@ public class LoginServlet extends HttpServlet {
         HashMap<String, Object> root = new HashMap<>();
         root.put("error_msg", request.getParameter("error_msg"));
         root.put("username", request.getParameter("username"));
+        root.put("email", request.getParameter("email"));
+        root.put("first_name", request.getParameter("first_name"));
+        root.put("last_name", request.getParameter("last_name"));
         root.put("message", request.getParameter("message"));
 
         try {

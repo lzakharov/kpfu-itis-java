@@ -1,3 +1,7 @@
+package ru.kpfu.itis.lzakharov.respository;
+
+import ru.kpfu.itis.lzakharov.models.Article;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -11,12 +15,12 @@ public class ArticleRepository extends Repository {
         LinkedList<Article> list = new LinkedList<>();
 
         try {
-            PreparedStatement statement = connection.prepareStatement("SELECT * FROM ARTICLE");
+            PreparedStatement statement = Repository.connection.prepareStatement("SELECT * FROM \"ARTICLE\" ");
             ResultSet result = statement.executeQuery();
 
             while (result.next()) {
-                list.add(new Article(result.getInt("id"), result.getString("title"),
-                        result.getString("author"), result.getDate("date"),
+                list.add(new Article(result.getInt("article_id"), result.getString("title"),
+                        result.getInt("author_id"), result.getTimestamp("timestamp"),
                         result.getString("description")));
             }
         } catch (SQLException e) {
@@ -31,11 +35,14 @@ public class ArticleRepository extends Repository {
         Article article = null;
 
         try {
-            PreparedStatement statement = connection.prepareStatement("SELECT * FROM ARTICLE WHERE id = " + id);
+            PreparedStatement statement = Repository.connection.prepareStatement("SELECT * FROM \"ARTICLE\" WHERE article_id = " + id);
             ResultSet result = statement.executeQuery();
 
             while (result.next()) {
-                article = new Article(result.getInt("id"), result.getString("title"), result.getString("author"), result.getDate("date"), result.getString("description"));
+                article = new Article(result.getInt("article_id"), result.getString("title"),
+                        result.getInt("author_id"), result.getTimestamp("timestamp"),
+                        result.getString("description"));
+
             }
         } catch (SQLException e) {
             e.printStackTrace();

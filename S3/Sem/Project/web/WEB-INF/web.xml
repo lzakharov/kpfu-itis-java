@@ -5,7 +5,7 @@
          version="3.1">
     <servlet>
         <servlet-name>login</servlet-name>
-        <servlet-class>LoginServlet</servlet-class>
+        <servlet-class>ru.kpfu.itis.lzakharov.servlets.LoginServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>login</servlet-name>
@@ -14,7 +14,7 @@
 
     <servlet>
         <servlet-name>profile</servlet-name>
-        <servlet-class>ProfileServlet</servlet-class>
+        <servlet-class>ru.kpfu.itis.lzakharov.servlets.ProfileServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>profile</servlet-name>
@@ -23,7 +23,7 @@
 
     <servlet>
         <servlet-name>logout</servlet-name>
-        <servlet-class>LogoutServlet</servlet-class>
+        <servlet-class>ru.kpfu.itis.lzakharov.servlets.LogoutServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>logout</servlet-name>
@@ -32,16 +32,25 @@
 
     <servlet>
         <servlet-name>registration</servlet-name>
-        <servlet-class>RegistrationServlet</servlet-class>
+        <servlet-class>ru.kpfu.itis.lzakharov.servlets.RegistrationServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>registration</servlet-name>
         <url-pattern>/registration</url-pattern>
     </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>feed</servlet-name>
+        <servlet-class>ru.kpfu.itis.lzakharov.servlets.FeedServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>feed</servlet-name>
+        <url-pattern>/feed</url-pattern>
+    </servlet-mapping>
 
     <servlet>
         <servlet-name>showBook</servlet-name>
-        <servlet-class>ShowBookServlet</servlet-class>
+        <servlet-class>ru.kpfu.itis.lzakharov.servlets.ShowBookServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>showBook</servlet-name>
@@ -50,7 +59,7 @@
 
     <servlet>
         <servlet-name>showArticle</servlet-name>
-        <servlet-class>ShowArticleServlet</servlet-class>
+        <servlet-class>ru.kpfu.itis.lzakharov.servlets.ShowArticleServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>showArticle</servlet-name>

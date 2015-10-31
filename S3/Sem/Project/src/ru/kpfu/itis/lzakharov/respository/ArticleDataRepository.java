@@ -1,4 +1,7 @@
-import javax.swing.text.html.HTMLDocument;
+package ru.kpfu.itis.lzakharov.respository;
+
+import ru.kpfu.itis.lzakharov.models.ArticleData;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -11,7 +14,7 @@ public class ArticleDataRepository extends Repository {
         ArticleData articleData = null;
 
         try {
-            PreparedStatement statement = connection.prepareStatement("SELECT * FROM ARTICLE_DATA WHERE article_id = " + article_id);
+            PreparedStatement statement = Repository.connection.prepareStatement("SELECT * FROM \"ARTICLE_DATA\" WHERE article_id = " + article_id);
             ResultSet result = statement.executeQuery();
 
             while (result.next()) {
