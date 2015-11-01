@@ -1,3 +1,5 @@
+package ru.kpfu.itis.lzakharov;
+
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
@@ -8,7 +10,7 @@ import java.io.IOException;
 /**
  * Created by levzaharov on 30.09.15.
  */
-@WebFilter(filterName = "AuthenticationFilter")
+@WebFilter(filterName = "ru.kpfu.itis.lzakharov.AuthenticationFilter")
 public class AuthenticationFilter implements Filter {
     public void destroy() {
     }

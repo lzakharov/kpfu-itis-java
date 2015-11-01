@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Profile</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<link rel="stylesheet" href="css/bootstrap.min.css" />
+</head>
+<body>
+	<script src="js/jquery.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+
+	<!-- Navigation -->
+	<nav class="navbar navbar-inverse navbar-static-top">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="#">Project name</a>
+			</div>
+			<div id="navbar" class="navbar-collapse collapse">
+				<div class="navbar-form navbar-right">
+					<button type="submit" class="btn btn-success">Вход</button>
+					<button type="submit" class="btn btn-primary">Регистрация</button>
+				</div>
+			</div><!--/.navbar-collapse -->
+		</div>
+	</nav>
+
+	<div class="container">
+		<!-- User information block -->
+		<div class="user-info">
+			<div class="row">
+				<!-- User avatar -->
+				<div class="col-md-4">
+					<div class="avatar-block">
+						<img id="avatar" src="">
+						<div class="form-group">
+						  <label for="exampleInputFile">File input</label>
+						  <input type="file" id="exampleInputFile">
+						  <p class="help-block">Example block-level help text here.</p>
+						 </div>
+					</div>
+				</div>
+				<div class="col-md-8">
+					<form role="form" method="POST">
+						<div class="panel panel-success">
+							<div class="panel-heading">
+				        <h3 class="panel-title">Редактировать информацию</h3>
+				      </div>
+				      <div class="panel-body">
+							  <div class="form-group">
+							    <label for="user-info1">Info</label>
+							    <input type="text" class="form-control" id="user-info1" placeholder="Enter smth">
+							    <label for="user-info2">Info</label>
+							    <input type="text" class="form-control" id="user-info2" placeholder="Enter smth">
+							    <label for="user-info3">Info</label>
+							    <input type="text" class="form-control" id="user-info3" placeholder="Enter smth">
+								  <button type="submit" class="btn btn-primary">Изменить</button>
+							  </div>
+				      </div>
+						</div>
+					</form>
+
+					<form role="form" method="POST">
+						<div class="panel panel-success">
+							<div class="panel-heading">
+				        <h3 class="panel-title">Изменить пароль</h3>
+				      </div>
+				      <div class="panel-body">
+							  <div class="form-group">
+							    <label for="Password">Пароль</label>
+							    <input type="password" class="form-control" id="Password" placeholder="Password">
+							    <label for="Password1">Повторите пароль</label>
+							    <input type="password" class="form-control" id="Password1" placeholder="Password">
+								  <button type="submit" class="btn btn-default">Изменить пароль</button>
+							  </div>
+				      </div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="container">
+		<!-- Nav tabs -->
+		<ul class="nav nav-tabs">
+		  <li><a href="#user-articles" data-toggle="tab">Мои статьи</a></li>
+		  <li><a href="#favourite" data-toggle="tab">Избранные</a></li>
+		  <li><a href="#reviews" data-toggle="tab">Отзывы</a></li>
+		  <li><a href="#notes" data-toggle="tab">Заметки</a></li>
+		</ul>
+
+		<!-- Tab panes -->
+		<div class="tab-content">
+		  <div class="tab-pane active" id="user-articles">	
+		  	Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi mattis lacus elit, nec venenatis erat accumsan tempor. Aliquam vel nisl neque. Phasellus eu risus elementum, sodales ex non, luctus justo. Quisque mattis arcu sit amet odio sollicitudin faucibus. Etiam vitae dolor tincidunt, porta nisi at, varius massa. Proin nec risus eget nisi feugiat lobortis eu et nisl. Sed consectetur varius ligula at feugiat. Sed scelerisque odio turpis. Cras placerat dictum nisi, vitae ultricies mi convallis sed. Vivamus viverra et neque eget suscipit.
+		  </div>
+		  <div class="tab-pane" id="favourite">
+		  	Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi mattis lacus elit, nec venenatis erat accumsan tempor. Aliquam vel nisl neque. Phasellus eu risus elementum, sodales ex non, luctus justo. Quisque mattis arcu sit amet odio sollicitudin faucibus. Etiam vitae dolor tincidunt, porta nisi at, varius massa. Proin nec risus eget nisi feugiat lobortis eu et nisl. Sed consectetur varius ligula at feugiat. Sed scelerisque odio turpis. Cras placerat dictum nisi, vitae ultricies mi convallis sed. Vivamus viverra et neque eget suscipit.	
+		  </div>
+		  <div class="tab-pane" id="reviews">
+		  	Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi mattis lacus elit, nec venenatis erat accumsan tempor. Aliquam vel nisl neque. Phasellus eu risus elementum, sodales ex non, luctus justo. Quisque mattis arcu sit amet odio sollicitudin faucibus. Etiam vitae dolor tincidunt, porta nisi at, varius massa. Proin nec risus eget nisi feugiat lobortis eu et nisl. Sed consectetur varius ligula at feugiat. Sed scelerisque odio turpis. Cras placerat dictum nisi, vitae ultricies mi convallis sed. Vivamus viverra et neque eget suscipit.	
+		  </div>
+		  <div class="tab-pane" id="notes">
+		  	Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi mattis lacus elit, nec venenatis erat accumsan tempor. Aliquam vel nisl neque. Phasellus eu risus elementum, sodales ex non, luctus justo. Quisque mattis arcu sit amet odio sollicitudin faucibus. Etiam vitae dolor tincidunt, porta nisi at, varius massa. Proin nec risus eget nisi feugiat lobortis eu et nisl. Sed consectetur varius ligula at feugiat. Sed scelerisque odio turpis. Cras placerat dictum nisi, vitae ultricies mi convallis sed. Vivamus viverra et neque eget suscipit.	
+		  </div>
+		</div>
+	</div>
+
+</body>
+</html>

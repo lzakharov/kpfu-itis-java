@@ -10,6 +10,54 @@ import java.sql.SQLException;
  * Created by lzakharov on 16.10.15.
  */
 public class UserRepository extends Repository {
+    public static void changeUserInfo(int id, String first_name, String last_name, String email, String address) {
+        try {
+            PreparedStatement statement = Repository.connection.prepareStatement("UPDATE \"USER\" " +
+                    "SET first_name = '" + first_name + "', " +
+                    "last_name = '" + last_name + "', " +
+                    "email = '" + email + "', " +
+                    "address = '" + address + "' " +
+                    "WHERE user_id = " + id
+            );
+
+            statement.execute();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void changeUserPassword(int id, String password) {
+        try {
+            PreparedStatement statement = Repository.connection.prepareStatement("UPDATE \"USER\" " +
+                    "SET password = '" + password + "' " +
+                    "WHERE user_id = " + id
+            );
+
+            statement.execute();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static int getUserIdByUsername(String username) {
+        int id = -1;
+
+        try {
+            PreparedStatement statement = Repository.connection.prepareStatement("SELECT user_id " +
+                    "FROM \"USER\" " +
+                    "WHERE username = '" + username + "'");
+            ResultSet result = statement.executeQuery();
+
+            while (result.next()) {
+                id = result.getInt("user_id");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return id;
+    }
+
     public static String getNameById(int id) {
         String name = null;
 
@@ -110,8 +158,8 @@ public class UserRepository extends Repository {
         try {
             PreparedStatement statement = Repository.connection.prepareStatement("INSERT INTO \"USER\" VALUES (DEFAULT , ?, ?, ?, ?, ?, ?, ?)");
             statement.setString(1, user.getUsername());
-            statement.setString(2, user.getFirstName());
-            statement.setString(3, user.getLastName());
+            statement.setString(2, user.getFirst_name());
+            statement.setString(3, user.getLast_name());
             statement.setString(4, user.getPassword());
             statement.setString(5, user.getEmail());
             statement.setDate(6, user.getBirthdate());

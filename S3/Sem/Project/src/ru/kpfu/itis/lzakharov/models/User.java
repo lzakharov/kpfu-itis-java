@@ -8,28 +8,28 @@ import java.sql.Date;
 public class User {
     private int id;
     private String username;
-    private String firstName;
-    private String lastName;
+    private String first_name;
+    private String last_name;
     private String password;
     private String email;
     private Date birthdate;
     private String address;
 
-    public User(String username, String firstName, String lastName, String password, String email, Date birthdate, String address) {
+    public User(String username, String first_name, String last_name, String password, String email, Date birthdate, String address) {
         this.username = username;
-        this.firstName = firstName;
-        this.lastName = lastName;
+        this.first_name = first_name;
+        this.last_name = last_name;
         this.password = password;
         this.email = email;
         this.birthdate = birthdate;
         this.address = address;
     }
 
-    public User(int id, String username, String firstName, String lastName, String password, String email, Date birthdate, String address) {
+    public User(int id, String username, String first_name, String last_name, String password, String email, Date birthdate, String address) {
         this.id = id;
         this.username = username;
-        this.firstName = firstName;
-        this.lastName = lastName;
+        this.first_name = first_name;
+        this.last_name = last_name;
         this.password = password;
         this.email = email;
         this.birthdate = birthdate;
@@ -40,12 +40,12 @@ public class User {
         return username;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public String getFirst_name() {
+        return first_name;
     }
 
-    public String getLastName() {
-        return lastName;
+    public String getLast_name() {
+        return last_name;
     }
 
     public String getPassword() {

@@ -20,6 +20,22 @@
         <servlet-name>profile</servlet-name>
         <url-pattern>/profile</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>changeInfo</servlet-name>
+        <servlet-class>ru.kpfu.itis.lzakharov.servlets.ChangeInfoServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>changeInfo</servlet-name>
+        <url-pattern>/change-info</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>changePassword</servlet-name>
+        <servlet-class>ru.kpfu.itis.lzakharov.servlets.ChangePasswordServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>changePassword</servlet-name>
+        <url-pattern>/change-password</url-pattern>
+    </servlet-mapping>
 
     <servlet>
         <servlet-name>logout</servlet-name>
@@ -68,12 +84,12 @@
 
     <filter>
         <filter-name>AuthenticationFilter</filter-name>
-        <filter-class>AuthenticationFilter</filter-class>
+        <filter-class>ru.kpfu.itis.lzakharov.AuthenticationFilter</filter-class>
     </filter>
     <filter-mapping>
         <filter-name>AuthenticationFilter</filter-name>
-        <servlet-name>ProfileServlet</servlet-name>
-        <servlet-name>LogoutServlet</servlet-name>
+        <servlet-name>profile</servlet-name>
+        <servlet-name>logout</servlet-name>
     </filter-mapping>
 
 </web-app>

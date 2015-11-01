@@ -25,29 +25,9 @@ import java.util.HashMap;
 public class RegistrationServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Repository repository = new Repository();
-        if (isUsernameUsed(response, request.getParameter("username"))) {
-            response.sendRedirect("/registration?error_msg=user%20exists");
-        }
-        else if (isEmailUsed(response, request.getParameter("email"))) {
-            response.sendRedirect("/registration?error_msg=email%20exists");
-        } else if (isPasswordConfirm(response, request.getParameter("password"), request.getParameter("password_confirm"))) {
-            response.sendRedirect("/registration?error_msg=password%20mismatch");
-        } else if (passwordValidation(response, request.getParameter("password"))) {
-            response.sendRedirect("/registration?error_msg=password%20format");
-        } else {
-            UserRepository.addUser(new User(request.getParameter("username"), request.getParameter("first_name"),
-                    request.getParameter("last_name"), request.getParameter("password"), request.getParameter("email"),
-                    Date.valueOf(request.getParameter("birthdate")), request.getParameter("address")));
-
-            response.sendRedirect("/login?message=successful%20registration");
-        }
-    }
-
-    private boolean passwordValidation(HttpServletResponse response, String password) throws IOException {
-//        Pattern pattern = Pattern.compile("((?=.*[a-z])(?=.*[A-Z])(?=.*\\\\d).{6,})");
-//        Matcher matcher = pattern.matcher(password);
-//        return !matcher.matches();
-        return false;
+        UserRepository.addUser(new User(request.getParameter("username"), request.getParameter("first_name"),
+                request.getParameter("last_name"), request.getParameter("password"), request.getParameter("email"),
+                Date.valueOf(request.getParameter("birthdate")), request.getParameter("address")));
     }
 
     private boolean isPasswordConfirm(HttpServletResponse response, String password, String password_confirm) throws IOException {

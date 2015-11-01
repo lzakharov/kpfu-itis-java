@@ -4,6 +4,7 @@ import freemarker.template.Configuration;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
 import ru.kpfu.itis.lzakharov.ConfigSingleton;
+import ru.kpfu.itis.lzakharov.respository.UserRepository;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -26,6 +27,7 @@ public class ProfileServlet extends HttpServlet {
         Template template = config.getTemplate("/profile.ftl");
         HashMap<String, Object> root = new HashMap<>();
         root.put("username", request.getSession().getAttribute("current_user"));
+        root.put("user", UserRepository.getUserByUsername(request.getSession().getAttribute("current_user").toString()));
 
         try {
             template.process(root, response.getWriter());
