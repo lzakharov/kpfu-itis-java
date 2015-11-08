@@ -36,11 +36,14 @@
     <div class="container">
     <#if current_user??>
         <div class="well">
-            <h4>Leave a ru.kpfu.itis.lzakharov.models.Comment</h4>
-            <div class="form-group">
-                <textarea class="form-control"></textarea>
-            </div>
-            <a class="btn btn-primary btn-lg" href="#" role="button">Отправить</a>
+            <h4>Leave a comment</h4>
+            <form action="/leave-comment" method="POST">
+                <div class="form-group">
+                    <textarea class="form-control" id="text" name="text"></textarea>
+                </div>
+                <input type="hidden" name="article_id" value="${article.article_id}">
+                <input class="btn btn-primary btn-lg" type="submit" value="Отправить" >
+            </form>
         </div>
     </#if>
 
@@ -56,9 +59,16 @@
                     <small>${comment.timestamp}</small>
                 </h4>
                 <p>${comment.text}</p>
-                <p class="pull-right">
-                    <a href="">Удалить</a>
-                </p>
+                <#if user_id?? && (user_id == comment.author_id)>
+                    <form action="/delete-comment" method="POST">
+                        <p class="pull-right">
+                            <input hidden name="comment_id" value="${comment.comment_id}">
+                            <input hidden name="author_id" value="${comment.author_id}">
+                            <input hidden name="article_id" value="${comment.article_id}">
+                            <input class="btn btn-link" type="submit" value="Удалить">
+                        </p>
+                    </form>
+                </#if>
             </div>
         </div>
     </#list>

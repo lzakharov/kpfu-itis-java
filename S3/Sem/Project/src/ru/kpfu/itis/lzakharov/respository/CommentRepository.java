@@ -28,4 +28,30 @@ public class CommentRepository extends Repository {
 
         return comments;
     }
+
+    public static void addComment(int article_id, int author_id, String text) {
+        try {
+            PreparedStatement statement = Repository.connection.prepareStatement("INSERT INTO \"COMMENT\" " +
+                    "(\"article_id\", \"author_id\", \"text\", \"timestamp\")" +
+                    "VALUES (?, ?, ?, CURRENT_TIMESTAMP)");
+            statement.setInt(1, article_id);
+            statement.setInt(2, author_id);
+            statement.setString(3, text);
+
+            statement.execute();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void deleteComment(int comment_id) {
+        try {
+            PreparedStatement statement = Repository.connection.prepareStatement("DELETE FROM \"COMMENT\" " +
+                    "WHERE comment_id = ?");
+            statement.setInt(1, comment_id);
+            statement.execute();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }

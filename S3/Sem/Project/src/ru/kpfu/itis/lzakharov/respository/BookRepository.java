@@ -17,7 +17,7 @@ public class BookRepository extends Repository {
         Book book = null;
 
         try {
-            PreparedStatement statement = Repository.connection.prepareStatement("SELECT * FROM \"ARTICLE\" WHERE article_id = " + id);
+            PreparedStatement statement = Repository.connection.prepareStatement("SELECT * FROM \"BOOK\" WHERE book_id = " + id);
             ResultSet result = statement.executeQuery();
 
             while (result.next()) {
@@ -33,7 +33,7 @@ public class BookRepository extends Repository {
     }
 
     public static LinkedList<Author> getAuthors(int id) {
-        LinkedList<Author> authors = null;
+        LinkedList<Author> authors = new LinkedList<>();
 
         try {
             PreparedStatement statement = Repository.connection.prepareStatement("SELECT author_id, name, birthdate, rate " +
@@ -49,5 +49,25 @@ public class BookRepository extends Repository {
         }
 
         return authors;
+    }
+
+    public static LinkedList<Book> getTopFiveBooks() {
+        LinkedList<Book> books = new LinkedList<>();
+
+        try {
+            PreparedStatement statement = Repository.connection.prepareStatement("SELECT * FROM \"BOOK\" " +
+                    "ORDER BY rate DESC " +
+                    "LIMIT 5");
+            ResultSet result = statement.executeQuery();
+
+            while (result.next()) {
+                books.add(new Book(result.getInt("book_id"), result.getString("name"),
+                        result.getInt("year"), result.getString("publisher"), result.getInt("rate")));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return books;
     }
 }

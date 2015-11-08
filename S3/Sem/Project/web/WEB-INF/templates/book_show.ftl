@@ -1,6 +1,6 @@
 <#ftl encoding='UTF-8'>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/html">
 <head>
     <title></title>
     <link rel="stylesheet" href="/css/bootstrap.min.css" />
@@ -17,8 +17,8 @@
 
     <div class="container">
         <div class="book-header">
-            <h3>${name}</h3>
-            <h4><a href="#">${author}</a></h4>
+            <h3>${book.name}</h3>
+            <h4><a href="#">${book.getAuthors()}</a></h4>
         </div>
         <div class="row">
             <!-- Обложка книги -->
@@ -30,16 +30,16 @@
 
             <!-- Основная информация -->
             <div class="col-md-9">
-                <div class="rating">${rate}</div>
+                <#if book.rate != 0><div class="rating">${book.rate}</div></#if>
                 <div class="publication-info">
-                    Год издания: ${year?c}
+                    <#if book.year != 0>Год издания: ${book.year?c}</#if>
                     <br>
-                    Издательство: ${publisher}
+                    <#if book.publisher??>Издательство: ${book.publisher}</#if>
                 </div>
 
                 <div class="description">
                     <h2>Описание</h2>
-                    <p>${description}</p>
+                    <p>${book_data.description}</p>
                 </div>
             </div>
         </div>
@@ -48,29 +48,45 @@
     <div class="container">
         <#if current_user??>
             <div class="well">
-                <h4>Leave a ru.kpfu.itis.lzakharov.models.Comment</h4>
-                <div class="form-group">
-                    <textarea class="form-control"></textarea>
-                </div>
-                <a class="btn btn-primary btn-lg" href="#" role="button">Отправить</a>
+                <h4>Leave a Review</h4>
+                <form action="/leave-review" method="POST">
+                    <div class="form-group">
+                        <textarea class="form-control" id="text" name="text"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <select name="type">
+                            <option selected value="1">Положительный отзыв</option>
+                            <option value="2">Отрицательный отзыв</option>
+                        </select>
+                    </div>
+                    <input type="hidden" name="book_id" value="${book.book_id}">
+                    <input class="btn btn-primary btn-lg" type="submit" value="Отправить" >
+                </form>
             </div>
         </#if>
 
         <hr>
 
-        <#list comments as comment>
+        <#list reviews as review>
             <div class="media">
                 <a class="pull-left" href="#">
                     <img class="media-object" src="http://placehold.it/64x64" alt="">
                 </a>
-                <div class="media-body">
-                    <h4 class="media-heading"> ${comment.name}
-                        <small>${comment.time}</small>
+                <div class="media-body" >
+                    <h4 class="media-heading"> ${review.getAuthorName()}
+                        <small>${review.timestamp}</small>
                     </h4>
-                    <p>${comment.text}</p>
-                    <p class="pull-right">
-                        <a href="">Удалить</a>
-                    </p>
+                    <p class="alert-<#if review.type == 1>success<#else>danger</#if>">${review.text}</p>
+                    <#if user_id?? && (user_id == review.author_id)>
+                        <form action="/delete-review" method="post">
+                            <p class="pull-right">
+                                <input hidden name="review_id" value="${review.review_id}">
+                                <input hidden name="author_id" value="${review.author_id}">
+                                <input hidden name="book_id" value="${review.book_id}">
+                                <input class="btn btn-link" type="submit" value="Удалить">
+                            </p>
+                        </form>
+                    </#if>
                 </div>
             </div>
         </#list>

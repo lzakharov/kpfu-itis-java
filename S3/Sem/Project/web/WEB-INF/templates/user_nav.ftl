@@ -11,6 +11,21 @@
         </div>
 
         <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li><a href="/">Home</a></li>
+                <li><a href="/feed">Articles</a></li>
+                <li><a href="/books">Books</a></li>
+                <li class="dropdown">
+                    <a id="drop1" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                        Actions
+                        <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="drop1">
+                        <li><a href="/article/add"Add article</a></li>
+                        <li><a href="#">Add book</a></li>
+                    </ul>
+                </li>
+            </ul>
             <div class="nav navbar-nav navbar-right">
                 <li>
                     <a href="/profile">Профиль</a>

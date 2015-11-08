@@ -12,6 +12,11 @@
         </div>
 
         <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li><a href="/">Home</a></li>
+                <li><a href="/feed">Articles</a></li>
+                <li><a href="/books">Books</a></li>
+            </ul>
             <div class="navbar-form navbar-right">
                 <a href="/login"><button type="submit" class="btn btn-success">Вход</button></a>
                 <a href="/registration"><button type="submit" class="btn btn-primary">Регистрацияa</button></a>

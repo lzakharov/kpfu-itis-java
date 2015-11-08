@@ -3,6 +3,38 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
          version="3.1">
+
+    <servlet-mapping>
+        <servlet-name>default</servlet-name>
+        <url-pattern>*.jpg</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>default</servlet-name>
+        <url-pattern>*.css</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>default</servlet-name>
+        <url-pattern>*.js</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>mainPageServler</servlet-name>
+        <servlet-class>ru.kpfu.itis.lzakharov.servlets.MainPageServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>mainPageServler</servlet-name>
+        <url-pattern>/</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>paginationServlet</servlet-name>
+        <servlet-class>ru.kpfu.itis.lzakharov.servlets.PaginationServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>paginationServlet</servlet-name>
+        <url-pattern>/pagination</url-pattern>
+    </servlet-mapping>
+
     <servlet>
         <servlet-name>login</servlet-name>
         <servlet-class>ru.kpfu.itis.lzakharov.servlets.LoginServlet</servlet-class>
@@ -72,6 +104,22 @@
         <servlet-name>showBook</servlet-name>
         <url-pattern>/book/show</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>leaveReview</servlet-name>
+        <servlet-class>ru.kpfu.itis.lzakharov.servlets.CreateReviewServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>leaveReview</servlet-name>
+        <url-pattern>/leave-review</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>deleteReview</servlet-name>
+        <servlet-class>ru.kpfu.itis.lzakharov.servlets.DeleteReviewServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>deleteReview</servlet-name>
+        <url-pattern>/delete-review</url-pattern>
+    </servlet-mapping>
 
     <servlet>
         <servlet-name>showArticle</servlet-name>
@@ -82,6 +130,32 @@
         <url-pattern>/article/show</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>addArticle</servlet-name>
+        <servlet-class>ru.kpfu.itis.lzakharov.servlets.AddArticleServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>addArticle</servlet-name>
+        <url-pattern>/article/add</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>leaveComment</servlet-name>
+        <servlet-class>ru.kpfu.itis.lzakharov.servlets.CreateCommentServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>leaveComment</servlet-name>
+        <url-pattern>/leave-comment</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>deleteComment</servlet-name>
+        <servlet-class>ru.kpfu.itis.lzakharov.servlets.DeleteCommentServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>deleteComment</servlet-name>
+        <url-pattern>/delete-comment</url-pattern>
+    </servlet-mapping>
+
     <filter>
         <filter-name>AuthenticationFilter</filter-name>
         <filter-class>ru.kpfu.itis.lzakharov.AuthenticationFilter</filter-class>
@@ -90,6 +164,7 @@
         <filter-name>AuthenticationFilter</filter-name>
         <servlet-name>profile</servlet-name>
         <servlet-name>logout</servlet-name>
+        <servlet-name>leaveReview</servlet-name>
     </filter-mapping>
 
 </web-app>
