@@ -52,13 +52,6 @@
                             $("#articles").html("");
                             if (data.results) {
                                 for (var i = 0; i < data.results.length; i++) {
-//                                    <div class="article">
-//                                      <h2 class="article-title">Title</h2>
-//                                      <p class="article-meta">Written by Lev on 29 September 2015. Posted in Blog</p>
-//                                      <p class="article-description">
-//                                      </p>
-//                                      <a href="#">Read more</a>
-//                                     </div>
                                     $("#articles").append(
                                             "<div class='article'>" +
                                                     "<h2 class='article-title'>" + data.results[i].title + "</h2>" +
@@ -70,8 +63,8 @@
                                 }
                             }
                         }
-                    });
-                }
+                    })
+                };
                 var page_num = 1;
                 $("#previous").click(function() {
                     if (page_num > 1) {

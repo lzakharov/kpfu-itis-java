@@ -17,11 +17,11 @@
                 <li><a href="/books">Books</a></li>
                 <li class="dropdown">
                     <a id="drop1" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                        Action
+                        Actions
                         <span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="drop1">
-                        <li><a href="#">Add article</a></li>
+                        <li><a href="/article/add"Add article</a></li>
                         <li><a href="#">Add book</a></li>
                     </ul>
                 </li>

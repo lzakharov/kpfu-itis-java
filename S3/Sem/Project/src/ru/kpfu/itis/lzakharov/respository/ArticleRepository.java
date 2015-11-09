@@ -9,6 +9,7 @@ import ru.kpfu.itis.lzakharov.models.User;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.LinkedList;
 
 /**
@@ -130,5 +131,30 @@ public class ArticleRepository extends Repository {
         }
 
         return object;
+    }
+
+    public static int addArticle(String title, int author_id, String description) {
+        int id = 0;
+        try {
+            PreparedStatement statement = Repository.connection.prepareStatement("INSERT INTO \"ARTICLE\" VALUES(DEFAULT, ?, ?, ?, ?)");
+            statement.setString(1, title);
+            statement.setInt(2, author_id);
+            Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+            statement.setTimestamp(3, timestamp);
+            statement.setString(4, description);
+
+            statement.execute();
+
+            statement = Repository.connection.prepareStatement("SELECT article_id FROM \"ARTICLE\" WHERE timestamp = '" + timestamp.toString() + "'");
+            ResultSet result = statement.executeQuery();
+
+            while (result.next()) {
+                id = result.getInt("article_id");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return id;
     }
 }

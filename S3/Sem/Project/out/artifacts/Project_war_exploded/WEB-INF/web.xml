@@ -165,6 +165,7 @@
         <servlet-name>profile</servlet-name>
         <servlet-name>logout</servlet-name>
         <servlet-name>leaveReview</servlet-name>
+        <servlet-name>addArticle</servlet-name>
     </filter-mapping>
 
 </web-app>
