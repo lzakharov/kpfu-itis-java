@@ -7,16 +7,16 @@ import java.sql.Blob;
  */
 public class ArticleData {
     private int article_id;
-    private Blob image;
+    private String image;
     private String text;
 
-    public ArticleData(int article_id, Blob image, String text) {
+    public ArticleData(int article_id, String image, String text) {
         this.article_id = article_id;
         this.image = image;
         this.text = text;
     }
 
-    public Blob getImage() {
+    public String getImage() {
         return image;
     }
 

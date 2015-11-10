@@ -22,9 +22,7 @@
             <p class="article-meta">Written by ${article.getAuthorName()} on ${article.timestamp}</p>
             <div class="article-image">
                 <#if article_data.image??>
-                    ${article_data.image}
-                <#else>
-                    IMAGE
+                    <img src="${article_data.image}">
                 </#if>
             </div>
             <p class="article-text">

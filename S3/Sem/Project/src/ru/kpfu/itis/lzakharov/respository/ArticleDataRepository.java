@@ -22,7 +22,7 @@ public class ArticleDataRepository extends Repository {
             ResultSet result = statement.executeQuery();
 
             while (result.next()) {
-                articleData = new ArticleData(result.getInt("article_id"), result.getBlob("image"), result.getString("text"));
+                articleData = new ArticleData(result.getInt("article_id"), result.getString("image"), result.getString("text"));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -31,21 +31,30 @@ public class ArticleDataRepository extends Repository {
         return articleData;
     }
 
-    public static void addArticleData(int article_id, String text, File blob) {
+    public static void addArticleData(int article_id, String text, String filename) {
         try {
-            PreparedStatement statement = Repository.connection.prepareStatement("INSERT INTO \"ARTICLE_DATA\" " +
-                            "VALUES(?, ?, ?)"
-            );
+            if (filename == null) {
+                PreparedStatement statement = Repository.connection.prepareStatement("INSERT INTO \"ARTICLE_DATA\" " +
+                                "(\"article_id\", \"text\") " +
+                                "VALUES(?, ?)"
+                );
 
-            FileInputStream in = new FileInputStream(blob);
-            statement.setInt(1, article_id);
-            statement.setBinaryStream(2, in, (int)blob.length());
-            statement.setString(3, text);
+                statement.setInt(1, article_id);
+                statement.setString(2, text);
 
-            statement.execute();
+                statement.execute();
+            } else {
+                PreparedStatement statement = Repository.connection.prepareStatement("INSERT INTO \"ARTICLE_DATA\" " +
+                                "VALUES(?, ?, ?)"
+                );
+
+                statement.setInt(1, article_id);
+                statement.setString(2, filename);
+                statement.setString(3, text);
+
+                statement.execute();
+            }
         } catch (SQLException e) {
-            e.printStackTrace();
-        } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
     }

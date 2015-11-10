@@ -21,7 +21,7 @@ CREATE TABLE "ARTICLE" (
 
 CREATE TABLE "ARTICLE_DATA" (
   "article_id" INTEGER NOT NULL,
-  "image" BYTEA,
+  "image" VARCHAR(100),
   "text" text NOT NULL
 );
 
@@ -59,8 +59,8 @@ CREATE TABLE "BOOK_AUTHOR" (
 CREATE TABLE "BOOK_DATA" (
   "book_id" INTEGER NOT NULL,
   "description" TEXT,
-  "text" BYTEA,
-  "cover" BYTEA
+  "text" VARCHAR(100),
+  "cover" VARCHAR(100)
 );
 
 CREATE TABLE "MESSAGE" (
