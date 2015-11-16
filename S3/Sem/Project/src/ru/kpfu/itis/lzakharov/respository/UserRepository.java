@@ -93,7 +93,8 @@ public class UserRepository extends Repository {
                         resultSet.getString("password"),
                         resultSet.getString("email"),
                         resultSet.getDate("birthdate"),
-                        resultSet.getString("address"));
+                        resultSet.getString("address"),
+                        resultSet.getString("avatar"));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -119,7 +120,8 @@ public class UserRepository extends Repository {
                         resultSet.getString("password"),
                         resultSet.getString("email"),
                         resultSet.getDate("birthdate"),
-                        resultSet.getString("address"));
+                        resultSet.getString("address"),
+                        resultSet.getString("avatar"));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -165,6 +167,16 @@ public class UserRepository extends Repository {
             statement.setDate(6, user.getBirthdate());
             statement.setString(7, user.getAddress());
 
+            statement.execute();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void updateAvatar(int id, String avatar) {
+        try {
+            PreparedStatement statement = Repository.connection.prepareStatement("UPDATE \"USER\" " +
+                    "SET avatar=\'" + avatar + "\' WHERE user_id=" + id);
             statement.execute();
         } catch (SQLException e) {
             e.printStackTrace();

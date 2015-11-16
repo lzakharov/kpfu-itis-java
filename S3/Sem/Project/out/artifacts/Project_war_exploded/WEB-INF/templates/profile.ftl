@@ -24,14 +24,18 @@
             <!-- User avatar -->
             <div class="col-md-4">
                 <div class="avatar-block">
-                    <img id="avatar" src="">
+                    <#if user.avatar??>
+                        <img id="avatar" src="${user.avatar}">
+                    </#if>
 
-                    <div class="form-group">
-                        <label for="exampleInputFile">File input</label>
-                        <input type="file" id="exampleInputFile">
+                    <form action="/update-avatar" enctype="multipart/form-data" method="POST">
+                        <div class="form-group">
+                            <label for="avatar">File avatar</label>
+                            <input type="file" id="avatar" name="avatar">
 
-                        <p class="help-block">Example block-level help text here.</p>
-                    </div>
+                            <button type="submit" class="btn btn-success">Update</button>
+                        </div>
+                    <form>
                 </div>
             </div>
             <div class="col-md-8">

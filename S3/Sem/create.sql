@@ -7,6 +7,7 @@ CREATE TABLE "USER" (
   "email" VARCHAR(100) NOT NULL,
   "birthdate" DATE,
   "address" VARCHAR(100),
+  "avatar" VARCHAR(128),
   PRIMARY KEY ("user_id")
 );
 

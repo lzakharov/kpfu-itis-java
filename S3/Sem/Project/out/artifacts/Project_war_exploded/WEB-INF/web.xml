@@ -53,6 +53,14 @@
         <url-pattern>/profile</url-pattern>
     </servlet-mapping>
     <servlet>
+        <servlet-name>updateAvatar</servlet-name>
+        <servlet-class>ru.kpfu.itis.lzakharov.servlets.UpdateUserAvatarServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>updateAvatar</servlet-name>
+        <url-pattern>/update-avatar</url-pattern>
+    </servlet-mapping>
+    <servlet>
         <servlet-name>changeInfo</servlet-name>
         <servlet-class>ru.kpfu.itis.lzakharov.servlets.ChangeInfoServlet</servlet-class>
     </servlet>
