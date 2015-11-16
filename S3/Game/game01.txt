@@ -9,7 +9,7 @@
 
 Пакеты отличают друг от друга по префиксу - первому байту пакета. 
 Формат пакетов:
-	LoginPacket: 0 + username
+	LoginPacket: 0 + username + "," + x + "," + y
 	DisconnectPacket: 1 + username
 	MovePacket: 2 + username + "," + x + "," + y + "," + dir
 	ShootPacket: 3 + username + "," + x + "," + y + "," + dir
