@@ -170,27 +170,5 @@
     }
 </script>
 
-
-<div class="container">
-    <!-- Nav tabs -->
-    <ul class="nav nav-tabs">
-        <li><a href="#user-articles" data-toggle="tab">Мои статьи</a></li>
-        <li><a href="#favourite" data-toggle="tab">Избранные</a></li>
-        <li><a href="#reviews" data-toggle="tab">Отзывы</a></li>
-        <li><a href="#notes" data-toggle="tab">Заметки</a></li>
-    </ul>
-
-    <!-- Tab panes -->
-    <div class="tab-content">
-        <div class="tab-pane active" id="user-articles">
-        </div>
-        <div class="tab-pane" id="favourite">
-        </div>
-        <div class="tab-pane" id="reviews">
-        </div>
-        <div class="tab-pane" id="notes">
-        </div>
-    </div>
-</div>
 </body>
 </html>

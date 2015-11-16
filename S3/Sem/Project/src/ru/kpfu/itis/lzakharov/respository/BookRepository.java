@@ -13,6 +13,27 @@ import java.util.LinkedList;
  * Created by lzakharov on 30.10.15.
  */
 public class BookRepository extends Repository {
+    public static LinkedList<Book> getBooks() {
+        LinkedList<Book> list = new LinkedList<>();
+
+        try {
+            PreparedStatement statement = Repository.connection.prepareStatement("SELECT * FROM \"BOOK\" ");
+            ResultSet result = statement.executeQuery();
+
+            while (result.next()) {
+                list.add(new Book(result.getInt("book_id"),
+                        result.getString("name"),
+                        result.getInt("year"),
+                        result.getString("publisher"),
+                        result.getInt("rate")));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return list;
+    }
+
     public static Book getBookById(int id) {
         Book book = null;
 

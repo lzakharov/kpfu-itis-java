@@ -66,14 +66,14 @@
             <div class="form-group" id="password-group">
                 <div class="col-md-4">
                     <label class="control-label"  for="password">Password</label>
-                    <input type="text" class="form-control" id="password" name="password" >
+                    <input type="password" class="form-control" id="password" name="password" >
                 <span class="help-block">Please provide your password.  Password must be six characters including one uppercase letter, one lower character and alphanumeric characters.</span>
                 </div>
             </div>
             <div class="form-group" id="password1-group">
                 <div class="col-md-4">
                     <label class="control-label"  for="password1">Repeat password</label>
-                    <input type="text" class="form-control" id="password1" name="password1" >
+                    <input type="password" class="form-control" id="password1" name="password1" >
                     <span class="help-block">Please repeat your password.</span>
                 </div>
             </div>

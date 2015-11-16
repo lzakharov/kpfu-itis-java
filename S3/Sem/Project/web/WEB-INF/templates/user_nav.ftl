@@ -22,7 +22,6 @@
                     </a>
                     <ul class="dropdown-menu"">
                         <li><a href="/article/add">Add article</a></li>
-                        <li><a href="#">Add book</a></li>
                     </ul>
                 </li>
             </ul>

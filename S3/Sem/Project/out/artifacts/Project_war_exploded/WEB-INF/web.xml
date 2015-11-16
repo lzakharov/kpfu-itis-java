@@ -97,6 +97,14 @@
     </servlet-mapping>
 
     <servlet>
+        <servlet-name>books</servlet-name>
+        <servlet-class>ru.kpfu.itis.lzakharov.servlets.BooksServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>books</servlet-name>
+        <url-pattern>/books</url-pattern>
+    </servlet-mapping>
+    <servlet>
         <servlet-name>showBook</servlet-name>
         <servlet-class>ru.kpfu.itis.lzakharov.servlets.ShowBookServlet</servlet-class>
     </servlet>
