@@ -15,6 +15,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.sql.Date;
 import java.util.HashMap;
 
@@ -25,8 +27,17 @@ import java.util.HashMap;
 public class RegistrationServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Repository repository = new Repository();
+        String password = request.getParameter("password");
+        String passwordHash = "";
+        try {
+            MessageDigest md = MessageDigest.getInstance("SHA-1");
+            md.update(password.getBytes());
+            passwordHash = new String(md.digest());
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
         UserRepository.addUser(new User(request.getParameter("username"), request.getParameter("first_name"),
-                request.getParameter("last_name"), request.getParameter("password"), request.getParameter("email"),
+                request.getParameter("last_name"), passwordHash, request.getParameter("email"),
                 Date.valueOf(request.getParameter("birthdate")), request.getParameter("address")));
     }
 

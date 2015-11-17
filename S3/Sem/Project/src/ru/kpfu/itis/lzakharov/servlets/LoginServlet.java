@@ -11,6 +11,8 @@ import ru.kpfu.itis.lzakharov.respository.UserRepository;
 import javax.servlet.ServletException;
 import javax.servlet.http.*;
 import java.io.IOException;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.HashMap;
 
 /**
@@ -29,12 +31,20 @@ public class LoginServlet extends HttpServlet {
 
         String username = request.getParameter("username");
         String password = request.getParameter("password");
+        String passwordHash = "";
+        try {
+            MessageDigest md = MessageDigest.getInstance("SHA-1");
+            md.update(password.getBytes());
+            passwordHash = new String(md.digest());
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
         Repository repository = new Repository();
         User user = UserRepository.getUserByUsername(username);
 
         if (user == null) {
             response.sendRedirect("/login?error_msg=Wrong%20username&username=" + username);
-        } else if (!user.isCorrectPassword(password)) {
+        } else if (!user.isCorrectPassword(passwordHash)) {
             response.sendRedirect("/login?error_msg=Wrong%20password&username=" + username);
         } else {
             if (request.getParameter("checkbox") != null) {
