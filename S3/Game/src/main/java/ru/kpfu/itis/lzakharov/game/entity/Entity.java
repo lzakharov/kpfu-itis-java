@@ -1,4 +1,4 @@
-package ru.kpfu.itis.lzakharov.game.entitie;
+package ru.kpfu.itis.lzakharov.game.entity;
 
 import java.awt.*;
 
@@ -16,11 +16,19 @@ public abstract class Entity {
         this.y = y;
     }
 
-    public void update() {
+    public int getX() {
+        return x;
+    }
+
+    public int getY() {
+        return y;
+    }
+
+    public synchronized void update() {
 
     }
 
-    public void render(Graphics2D graphics) {
+    public synchronized void render(Graphics2D graphics) {
 
     }
 }

@@ -1,29 +1,29 @@
 package ru.kpfu.itis.lzakharov.net.packet;
 
+import ru.kpfu.itis.lzakharov.net.Client;
+import ru.kpfu.itis.lzakharov.net.Server;
+
 /**
  * Created by lzakharov on 16.11.15.
  */
 
-public class MovePacket extends Packet {
+public class LoginPacket extends Packet {
     private String username;
     private int x, y;
-    private int direction;
 
-    public MovePacket(byte[] data) {
+    public LoginPacket(byte[] data) {
         super(0);
         String[] dataArray = readData(data).split(",");
         this.username = dataArray[0];
-        this.x = Integer.parseInt(dataArray[1]);
-        this.y = Integer.parseInt(dataArray[2]);
-        this.direction = Integer.parseInt(dataArray[3]);
+        this.x = Integer.parseInt(dataArray[1].trim());
+        this.y = Integer.parseInt(dataArray[2].trim());
     }
 
-    public MovePacket(String username, int x, int y, int direction) {
+    public LoginPacket(String username, int x, int y) {
         super(0);
         this.username = username;
         this.x = x;
         this.y = y;
-        this.direction = direction;
     }
 
     public String getUsername() {
@@ -38,13 +38,9 @@ public class MovePacket extends Packet {
         return y;
     }
 
-    public int getDirection() {
-        return direction;
-    }
-
     @Override
     public byte[] getData() {
-        return ("0" + this.username + "," + this.x + "," + this.y + "," + this.direction).getBytes();
+        return ("0" + this.username + "," + this.x + "," + this.y).getBytes();
     }
 }
 

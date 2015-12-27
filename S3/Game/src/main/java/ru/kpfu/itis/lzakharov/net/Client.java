@@ -1,9 +1,10 @@
 package ru.kpfu.itis.lzakharov.net;
 
 import ru.kpfu.itis.lzakharov.game.Controller;
-import ru.kpfu.itis.lzakharov.game.entitie.Bullet;
-import ru.kpfu.itis.lzakharov.game.entitie.Player;
-import ru.kpfu.itis.lzakharov.game.entitie.PlayerMP;
+import ru.kpfu.itis.lzakharov.game.Game;
+import ru.kpfu.itis.lzakharov.game.entity.Bullet;
+import ru.kpfu.itis.lzakharov.game.entity.Player;
+import ru.kpfu.itis.lzakharov.game.entity.PlayerMP;
 import ru.kpfu.itis.lzakharov.net.packet.*;
 
 import java.io.IOException;
@@ -14,15 +15,16 @@ import java.net.*;
  */
 
 public class Client implements Runnable {
-    private static final int PORT = 8765;
 
+    private Game game;
+    private int port;
     private InetAddress inetAddress;
     private DatagramSocket socket;
-    private Controller controller;
     private Thread thread;
 
-    public Client(Controller controller, String inetAddress) {
-        this.controller = controller;
+    public Client(Game game, int port, String inetAddress) {
+        this.game = game;
+        this.port = port;
 
         try {
             this.socket = new DatagramSocket();
@@ -74,13 +76,14 @@ public class Client implements Runnable {
                 break;
             case DISCONNECT:
                 DisconnectPacket disconnectPacket = new DisconnectPacket(packet.getData());
-                controller.removePlayer(disconnectPacket.getUsername());
+                Controller.getController().removePlayer(disconnectPacket.getUsername());
+                game.showMessage("User " + disconnectPacket.getUsername() + " left the game:(");
                 break;
         }
     }
 
     public void sendData(byte[] data) {
-        DatagramPacket packet = new DatagramPacket(data, data.length, inetAddress, PORT);
+        DatagramPacket packet = new DatagramPacket(data, data.length, inetAddress, port);
 
         try {
             socket.send(packet);
@@ -90,16 +93,15 @@ public class Client implements Runnable {
     }
 
     private void handleLogin(LoginPacket packet, InetAddress inetAddress, int port) {
-        Player player = new PlayerMP(packet.getUsername(), packet.getX(), packet.getY(), inetAddress, port);
-        controller.addEntity(player);
+        Player player = new PlayerMP(game, packet.getUsername(), game.getMPatlas(), packet.getX(), packet.getY(), inetAddress, port);
+        Controller.getController().addEntity(player);
     }
 
     private void handleMove(MovePacket packet) {
-        controller.movePlayer(packet.getUsername(), packet.getX(), packet.getY(), packet.getDirection());
+        Controller.getController().movePlayer(packet.getUsername(), packet.getX(), packet.getY(), packet.getDirection());
     }
 
     private void handleShoot(ShootPacket shootPacket) {
-        controller.shoot(new Bullet(shootPacket.getUsername(), shootPacket.getX(), shootPacket.getY(), shootPacket.getDirection(), shootPacket.getSpeed()));
+        Controller.getController().shoot(new Bullet(shootPacket.getUsername(), shootPacket.getX(), shootPacket.getY(), shootPacket.getDirection(), shootPacket.getSpeed()));
     }
 }
-

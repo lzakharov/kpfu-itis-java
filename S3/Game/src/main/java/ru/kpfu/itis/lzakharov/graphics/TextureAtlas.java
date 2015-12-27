@@ -1,5 +1,6 @@
 package ru.kpfu.itis.lzakharov.graphics;
 
+
 import ru.kpfu.itis.lzakharov.util.ResourceLoader;
 
 import java.awt.image.BufferedImage;

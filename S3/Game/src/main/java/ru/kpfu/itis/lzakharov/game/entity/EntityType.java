@@ -1,4 +1,4 @@
-package ru.kpfu.itis.lzakharov.game.entitie;
+package ru.kpfu.itis.lzakharov.game.entity;
 
 /**
  * Created by lzakharov on 10.11.15.

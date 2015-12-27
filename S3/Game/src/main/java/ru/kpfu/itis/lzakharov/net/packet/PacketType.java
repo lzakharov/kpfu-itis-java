@@ -16,5 +16,4 @@ public enum PacketType {
     public int getId() {
         return id;
     }
-
 }
