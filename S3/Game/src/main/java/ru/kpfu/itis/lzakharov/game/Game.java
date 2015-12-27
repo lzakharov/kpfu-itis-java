@@ -32,6 +32,7 @@ public class Game extends Canvas implements Runnable {
     private static final String ATLAS_FILENAME_FOR_SERVER = "texture_atlas_server.png";
     private static final String ATLAS_FILENAME_FOR_CLIENT = "texture_atlas_client.png";
     private static final String LOADING_ICON = "ajax-loader.gif";
+    private static final int PORT = 9876;
 
     private TextureAtlas atlas;
     private TextureAtlas MPatlas;
@@ -103,13 +104,21 @@ public class Game extends Canvas implements Runnable {
         usernameText.setBounds(380, 210, 160, 25);
         panel.add(usernameText);
 
-        JLabel portLabel = new JLabel("PORT");
-        portLabel.setBounds(290, 240, 80, 25);
-        panel.add(portLabel);
+//        JLabel portLabel = new JLabel("Port");
+//        portLabel.setBounds(290, 240, 80, 25);
+//        panel.add(portLabel);
+//
+//        JTextField portText = new JTextField(8);
+//        portText.setBounds(380, 240, 160, 25);
+//        panel.add(portText);
 
-        JTextField portText = new JTextField(8);
-        portText.setBounds(380, 240, 160, 25);
-        panel.add(portText);
+        JLabel hostnameLabel = new JLabel("Hostname");
+        hostnameLabel.setBounds(290, 240, 80, 25);
+        panel.add(hostnameLabel);
+
+        JTextField hostnameText = new JTextField(8);
+        hostnameText.setBounds(380, 240, 160, 25);
+        panel.add(hostnameText);
 
         JLabel isServerLabel = new JLabel("Server?");
         isServerLabel.setBounds(290, 270, 100, 25);
@@ -120,18 +129,18 @@ public class Game extends Canvas implements Runnable {
         panel.add(isServer);
 
         JButton playButton = new JButton("PLAY!");
-        playButton.setBounds(380, 320, 80, 25);
+        playButton.setBounds(380, 300, 80, 25);
         playButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                startWaiting(usernameText.getText(), Integer.parseInt(portText.getText()), isServer.isSelected());
+                startWaiting(usernameText.getText(), PORT, hostnameText.getText(), isServer.isSelected());
             }
         });
         
         panel.add(playButton);
     }
 
-    private void startWaiting(String username, int port, boolean isServer) {
+    private void startWaiting(String username, int port, String hostname, boolean isServer) {
         if (isServer) {
             try {
                 server = new Server(this, port);
@@ -139,7 +148,7 @@ public class Game extends Canvas implements Runnable {
                 showMessage(e.getMessage());
             }
         }
-        client = new Client(this, port, "localhost");
+        client = new Client(this, port, hostname);
 
         if (server != null) {
             atlas = new TextureAtlas(ATLAS_FILENAME_FOR_SERVER);
